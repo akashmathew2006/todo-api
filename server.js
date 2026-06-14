@@ -8,8 +8,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-.then(() => console.log('MongoDB Connected'))
-.catch(err => console.log(err));
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 app.use('/tasks', require('./routes/taskRoutes'));
 
